@@ -5,34 +5,43 @@
 </head>
 <body>
 <h2>Hello World!</h2>
-<audio id="audio" controls autoplay src="/audio.wav"></audio>
-<form action="/login" method="post" >
-    <%--<input name="answer" />--%>
-    <button id="change">看不清?换一张</button>
+<div id="wrapper">
+</div>
+    <form action="/login" method="post" >
+        <%--<input name="answer" />--%>
+        <button id="change">看不清?换一张</button>
+        <button id="getAudio">语音</button>
 
-    <%--<input   type="submit" value="验证"/>--%>
+    </form>
 
-</form>
-
-<img id="img" src="/stickyImg" />
-<form action="/login" method="post" >
-    <input name="answer"/>
-</form>
+    <img id="img" src="/stickyImg" />
+    <form action="/login" method="post" >
+        <input name="answer"/>
+    </form>
+</div>
 
 </body>
 <script>
     $(document).ready(function () {
 
-        // $('#change').on('click',(function (e) {
-        //     console.log(23)
-        // }))
+        $('#getAudio').click(function(e){
+            e.preventDefault();
+            // $('#wrapper').html('<audio id="audio" controls autoplay src="/audio.wav"></audio>')
+            // var randNum=Math.floor(Math.random()*100)
+            $('#wrapper').html('<audio id="audio" controls="controls" autoplay="autoplay" src="/audio.wav"></audio>');
+            $('#audio').attr('src','<%=request.getContextPath()%>/audio.wav?'+Math.floor(Math.random()*100));
+        });
         $('#change').click(function (e) {
             e.preventDefault();
-            // alert(32423)
+            $.get('/refresh',function (res) {
+                alert("refresh success");
+                $('#audio').css("display","none");
+                $('#img').attr('src','<%=request.getContextPath()%>/stickyImg?'+Math.floor(Math.random()*100));
 
+            });
+            <%--$('#img').attr('src','<%=request.getContextPath()%>/stickyImg?'+Math.floor(Math.random()*100));--%>
 
-            $('#audio').attr('src','<%=request.getContextPath()%>/audio.wav?'+Math.floor(Math.random()*100));
-            $('#img').attr('src','<%=request.getContextPath()%>/stickyImg?'+Math.floor(Math.random()*100));
+            <%--$('#audio').css("display","none");--%>
 
         })
 

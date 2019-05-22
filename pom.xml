@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.lyb</groupId>
-  <artifactId>captcha</artifactId>
+  <artifactId>myCaptcha</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>captcha</name>
+  <name>myCaptcha</name>
 
   <dependencies>
     <!-- https://mvnrepository.com/artifact/nl.captcha/simplecaptcha -->
@@ -18,7 +18,7 @@
           <artifactId>simplecaptcha</artifactId>
           <version>1.2.1</version>
           <scope>system</scope>
-          <systemPath>${project.basedir}/lib/simplecaptcha-1.2.1.jar</systemPath>
+        <systemPath>${project.basedir}/src/main/resources/lib/simplecaptcha-1.2.1.jar</systemPath>
       </dependency>
 
       <dependency>
@@ -27,6 +27,7 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>servlet-api</artifactId>
@@ -36,7 +37,7 @@
   </dependencies>
 
   <build>
-    <finalName>captcha</finalName>
+    <finalName>myCaptcha</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>
@@ -47,6 +48,39 @@
             <port>8089</port>
           </configuration>
         </plugin>
+
+        <!-- 打包jar文件时，配置manifest文件，加入lib包的jar依赖 -->
+        <!--<plugin>-->
+          <!--<groupId>org.apache.maven.plugins</groupId>-->
+          <!--<artifactId>maven-jar-plugin</artifactId>-->
+          <!--<configuration>-->
+            <!--<archive>-->
+              <!--<manifest>-->
+                <!--<addClasspath>true</addClasspath>-->
+                <!--<classpathPrefix>lib/</classpathPrefix>-->
+              <!--</manifest>-->
+            <!--</archive>-->
+          <!--</configuration>-->
+        <!--</plugin>-->
+        <!--<plugin>-->
+          <!--<groupId>org.apache.maven.plugins</groupId>-->
+          <!--<artifactId>maven-dependency-plugin</artifactId>-->
+          <!--<executions>-->
+            <!--<execution>-->
+              <!--<id>copy</id>-->
+              <!--<phase>package</phase>-->
+              <!--<goals>-->
+                <!--<goal>copy-dependencies</goal>-->
+              <!--</goals>-->
+              <!--<configuration>-->
+                <!--<outputDirectory>-->
+                  <!--${project.build.directory}/lib-->
+                <!--</outputDirectory>-->
+              <!--</configuration>-->
+            <!--</execution>-->
+          <!--</executions>-->
+        <!--</plugin>-->
+
       </plugins>
     </pluginManagement>
   </build>

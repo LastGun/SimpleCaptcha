@@ -6,7 +6,7 @@
   <display-name>captcha</display-name>
     <servlet>
         <servlet-name>AudioCaptcha</servlet-name>
-        <servlet-class>com.lyb.servlet.CustomAudioServlet</servlet-class>
+        <servlet-class>com.oracle.hkeaa.custom.captcha.servlet.CustomAudioServlet</servlet-class>
         <!--<load-on-startup>5</load-on-startup>-->
     </servlet>
 
@@ -15,17 +15,27 @@
         <url-pattern>/audio.wav</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>RefreshCaptcha</servlet-name>
+        <servlet-class>com.oracle.hkeaa.custom.captcha.servlet.RefreshServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RefreshCaptcha</servlet-name>
+        <url-pattern>/refresh</url-pattern>
+    </servlet-mapping>
+
    <servlet>
     <servlet-name>StickyCaptcha</servlet-name>
-    <servlet-class>com.lyb.servlet.CustomCaptchaServlet</servlet-class>
+    <servlet-class>com.oracle.hkeaa.custom.captcha.servlet.CustomCaptchaServlet</servlet-class>
       <!--<load-on-startup>4</load-on-startup>-->
     <init-param>
       <param-name>width</param-name>
-      <param-value>250</param-value>
+      <param-value>150</param-value>
     </init-param>
     <init-param>
       <param-name>height</param-name>
-      <param-value>75</param-value>
+      <param-value>30</param-value>
     </init-param>
    </servlet>
 
@@ -46,7 +56,7 @@
 
     <servlet>
         <servlet-name>Login</servlet-name>
-        <servlet-class>com.lyb.servlet.LoginServlet</servlet-class>
+        <servlet-class>com.oracle.hkeaa.custom.captcha.servlet.LoginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
